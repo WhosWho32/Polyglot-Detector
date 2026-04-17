@@ -5,4 +5,6 @@ It was designed to detect polyglots made using the following website: https://ww
 For now, it does not work for every feature on there, but I will be working towards implementing that.
 
 # Usage
-'''yara PolyglotDetector.yar [path-to-file]'''
+'''
+yara PolyglotDetector.yar [path-to-file]
+'''
