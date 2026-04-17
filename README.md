@@ -6,6 +6,6 @@ For now, it does not work for every feature on there, but I will be working towa
 
 # Usage
 
-'''
+`
 yara PolyglotDetector.yar [path-to-file]
-'''
+`
