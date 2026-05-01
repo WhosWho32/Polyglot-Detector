@@ -147,3 +147,26 @@ rule TRIPLE_POLYGLOT_PDF_VIDEO_ZIP {
 	condition:
 		$pdf and ($mp4_A or $mp4_B) and $zip
 }
+
+rule QUADRUPLE_POLYGLOT_PDF_VIDEO_ZIP_IMAGE {
+	meta:
+		author = "WhosWho"
+		description = "PDF, Video, ZIP and Image Polyglot file detection"
+	 strings:
+		$pdf = { 25 50 44 46 2D }
+
+		$mp4_A = { 66 74 79 70 69 73 6F 6D }
+		$mp4_B = { 66 74 79 70 4D 53 4E 56 }
+
+		$zip = { 50 4B 03 04 }
+
+		$png = { 89 50 4E 47 0D 0A 1A 0A }
+
+		$jpg1 = { FF D8 FF DB }
+		$jpg2 = { FF D8 FF E0 00 10 4A 46 49 46 00 01 }
+		$jpg3 = { FF D8 FF EE }
+		$jpg4 = { FF D8 FF E1 ?? ?? 45 78 69 66 00 00 }
+		$jpg5 = { FF D8 FF E0 }
+	condition:
+		($png or $jpg1 or $jpg2 or $jpg3 or $jpg4 or $jpg5) and $pdf and ($mp4_A or $mp4_B) and $zip
+}
