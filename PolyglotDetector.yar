@@ -1,4 +1,4 @@
-rule POLYGLOT_IMAGEandZIP {
+rule POLYGLOT_IMAGE_ZIP {
 	meta:
 		author = "WhosWho"
 		description = "Image and ZIP Polyglot file detection"
@@ -16,7 +16,7 @@ rule POLYGLOT_IMAGEandZIP {
 		($png at 0 or $jpg1 at 0  or $jpg2 at 0 or $jpg3 at 0 or $jpg4 at 0 or $jpg5 at 0) and $zip
 }
 
-rule POLYGLOT_IMAGEandPDF {
+rule POLYGLOT_IMAGE_PDF {
 	meta:
 		author = "WhosWho"
 		description = "Image and PDF Polyglot file detection"
@@ -34,7 +34,7 @@ rule POLYGLOT_IMAGEandPDF {
 		($png at 0 or $jpg1 at 0  or $jpg2 at 0 or $jpg3 at 0 or $jpg4 at 0 or $jpg5 at 0) and $pdf
 }
 
-rule POLYGLOT_PDFandZIP {
+rule POLYGLOT_PDF_ZIP {
 	meta:
 		author = "WhosWho"
 		description = "PDF and ZIP Polyglot file detection"
@@ -46,7 +46,7 @@ rule POLYGLOT_PDFandZIP {
 		$pdf and $zip
 }
 
-rule POLYGLOT_PDFandVIDEO {
+rule POLYGLOT_PDF_VIDEO {
 	meta:
 		author = "WhosWho"
 		description = "PDF and Video Polyglot file detection"
@@ -59,7 +59,7 @@ rule POLYGLOT_PDFandVIDEO {
 		$pdf and ($mp4_A or $mp4_B)
 }
 
-rule POLYGLOT_ZIPandVIDEO {
+rule POLYGLOT_ZIP_VIDEO {
 		meta:
 		author = "WhosWho"
 		description = "ZIP and Video Polyglot file detection"
@@ -72,7 +72,7 @@ rule POLYGLOT_ZIPandVIDEO {
 		$zip and ($mp4_A or $mp4_B)
 }
 
-rule POLYGLOT_IMAGEandVIDEO {
+rule POLYGLOT_IMAGE_VIDEO {
 	meta:
 		author = "WhosWho"
 		description = "Image and Video Polyglot file detection"
@@ -91,7 +91,7 @@ rule POLYGLOT_IMAGEandVIDEO {
 		($png or $jpg1 or $jpg2 or $jpg3 or $jpg4 or $jpg5) and ($mp4_A or $mp4_B)
 }
 
-rule TRIPLE_POLYGLOT_IMAGEandVIDEOandPDF {
+rule TRIPLE_POLYGLOT_IMAGE_VIDEO_PDF {
 	meta:
 		author = "WhosWho"
 		description = "Image, Video and PDF Polyglot file detection"
@@ -110,4 +110,25 @@ rule TRIPLE_POLYGLOT_IMAGEandVIDEOandPDF {
 		$pdf = { 25 50 44 46 2D }
 	condition:
 		($png or $jpg1 or $jpg2 or $jpg3 or $jpg4 or $jpg5) and ($mp4_A or $mp4_B) and $pdf
+}
+
+rule TRIPLE_POLYGLOT_IMAGE_VIDEO_ZIP {
+	meta:
+		author = "WhosWho"
+		description = "Image, Video and ZIP Polyglot file detection"
+	strings:
+		$png = { 89 50 4E 47 0D 0A 1A 0A }
+
+		$jpg1 = { FF D8 FF DB }
+		$jpg2 = { FF D8 FF E0 00 10 4A 46 49 46 00 01 }
+		$jpg3 = { FF D8 FF EE }
+		$jpg4 = { FF D8 FF E1 ?? ?? 45 78 69 66 00 00 }
+		$jpg5 = { FF D8 FF E0 }
+
+		$mp4_A = { 66 74 79 70 69 73 6F 6D }
+		$mp4_B = { 66 74 79 70 4D 53 4E 56 }
+
+		$zip = { 50 4B 03 04 }
+	condition:
+		($png or $jpg1 or $jpg2 or $jpg3 or $jpg4 or $jpg5) and ($mp4_A or $mp4_B) and $zip
 }
