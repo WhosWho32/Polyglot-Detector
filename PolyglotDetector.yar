@@ -132,3 +132,18 @@ rule TRIPLE_POLYGLOT_IMAGE_VIDEO_ZIP {
 	condition:
 		($png or $jpg1 or $jpg2 or $jpg3 or $jpg4 or $jpg5) and ($mp4_A or $mp4_B) and $zip
 }
+
+rule TRIPLE_POLYGLOT_PDF_VIDEO_ZIP {
+	meta:
+		author = "WhosWho"
+		description = "PDF, Video and ZIP Polyglot file detection"
+	strings:
+		$pdf = { 25 50 44 46 2D }
+
+		$mp4_A = { 66 74 79 70 69 73 6F 6D }
+		$mp4_B = { 66 74 79 70 4D 53 4E 56 }
+
+		$zip = { 50 4B 03 04 }
+	condition:
+		$pdf and ($mp4_A or $mp4_B) and $zip
+}
